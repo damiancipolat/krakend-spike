@@ -205,3 +205,26 @@ We create a forward **http://localhost:8080/api/responses/mapping** to **https:/
       ]
     }
 ```
+
+### 7) Target data:
+We create a forward **http://localhost:8080/api/post/target** to **https://jsonplaceholder.typicode.com/users/2**.
+
+```json
+    {
+      "@comments":"This endpoint get the address response attribute data.",
+      "endpoint": "/api/post/target",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/users/2",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ],
+          "target":"address"
+        }
+      ]
+    }
+```
