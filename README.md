@@ -27,5 +27,42 @@ When the configuration and install is complete, test using a request.
 curl http://localhost:8080/__health
 ```
 
-### Commands:
+## Concepts:
+Here we cover 8 exercises of krakend usage and how to create configuration file.
 
+### 1) Proxy:
+We create a forward **http://localhost:8080/api/products/** to **https://jsonplaceholder.typicode.com/posts**.
+
+```json
+    {
+      "@comments":"This endpoint has rate limit",        
+      "endpoint": "/api/products/",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/posts",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
+          "disable_host_sanitize": false,
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ],
+          "is_collection": true,
+          "target": "",
+          "group": "",
+          "mapping": {
+            "collection": "products"
+          }
+        }
+      ],
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "max_rate": 2,
+          "client_max_rate": 1,
+          "strategy": "ip"
+        }
+      }
+    }
+```
