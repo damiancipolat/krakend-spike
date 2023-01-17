@@ -1,7 +1,7 @@
 # krakend-spike
 This project is an spike to learn and practice the basic usage of KrakenD api gateway.
 
-## Configuration:
+### Configuration:
 To test this project run the following commands, you require docker installed in your computer.
 
 Is required a **.json** configuration file, you can create it using a designer:
