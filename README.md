@@ -4,10 +4,9 @@ This project is an spike to learn and practice the basic usage of KrakenD api ga
 ### Configuration:
 To test this project run the following commands, you require docker installed in your computer.
 
-Is required a **.json** configuration file, you can create it using a designer:
+Is required a **.json** configuration file, you can create it using a online designer https://designer.krakend.io/#!/
 
-https://designer.krakend.io/#!/
-
+### Commands:
 
 ```sh
 # Dowload KrakenD image
