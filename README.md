@@ -21,3 +21,11 @@ docker run -p 8080:8080 -v $PWD:/etc/krakend/ devopsfaith/krakend
 # Build image, optional.
 docker build . -t api-gateway
 ```
+
+When the configuration and install is complete, test using a request.
+```sh
+curl http://localhost:8080/__health
+```
+
+### Commands:
+
