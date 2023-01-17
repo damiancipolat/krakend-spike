@@ -1,0 +1,190 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "KrakenD - API Gateway",
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "output_encoding": "json",
+  "disable_keep_alives": true,
+  "port":8080,
+  "endpoints": [
+    {
+      "@comments":"This endpoint has rate limit",        
+      "endpoint": "/api/products/",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/posts",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
+          "disable_host_sanitize": false,
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ],
+          "is_collection": true,
+          "target": "",
+          "group": "",
+          "mapping": {
+            "collection": "products"
+          }
+        }
+      ],
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "max_rate": 2,
+          "client_max_rate": 1,
+          "strategy": "ip"
+        }
+      }
+    },
+    {
+      "@comments":"This endpoint proxy query string",
+      "endpoint": "/api/responses/{id}",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/comments/{id}",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
+          "disable_host_sanitize": false,
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ]
+        }
+      ],
+      "input_query_strings":[
+        "id"
+      ]
+    },
+    {
+      "@comments":"This endpoint proxy headers ????",
+      "endpoint": "/api/responses/headers",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/comments/",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
+          "disable_host_sanitize": false,
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ],
+          "is_collection": true,
+          "target": "",
+          "group": "",
+          "mapping": {
+            "collection": "comments"
+          }
+        }
+      ],
+      "input_headers":[
+        "x-test"
+      ]
+    },
+    {
+      "@comments":"This endpoint merge two responses post + comment.",
+      "endpoint": "/api/responses/merge",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/comments/1",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ]
+        },
+        {
+          "url_pattern": "/posts/2",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ]
+        }
+      ]
+    },
+    {
+      "@comments":"This endpoint group data.",
+      "endpoint": "/api/responses/group",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/comments/1",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ],
+          "group":"response"
+        }
+      ]
+    },
+    {
+      "@comments":"This endpoint rename field email->emailText name->nameText.",
+      "endpoint": "/api/responses/mapping",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/comments/1",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ],
+          "mapping":{
+            "email":"emailText",
+            "name":"nameText"
+          }
+        }
+      ]
+    },
+    {
+      "@comments":"This endpoint get the address response attribute data.",
+      "endpoint": "/api/post/target",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/users/2",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ],
+          "target":"address"
+        }
+      ]
+    },
+    {
+      "@comments":"This endpoint use internal cache",
+      "endpoint": "/api/post/cache",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/users/2",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ],
+          "extra_config":{
+            "qos/http-cache":{
+              "shared":true
+            }
+          }
+        }
+      ]
+    }      
+  ]
+}
