@@ -1,0 +1,177 @@
+{
+	"info": {
+		"_postman_id": "194b8ed6-94ae-4a4c-89d6-9788b8b646b5",
+		"name": "Kraken D example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET products - proxy response",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/products/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get responses - proxy query string",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/responses/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"responses",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get responses - proxy header x-test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/responses/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"responses",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get response - merge two request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/responses/headers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"responses",
+						"headers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get responses - group data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/responses/merge",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"responses",
+						"merge"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get responses - mapping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/responses/group",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"responses",
+						"group"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get response - target",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/responses/mapping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"responses",
+						"mapping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get response - cache",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/post/cache",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"post",
+						"cache"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
