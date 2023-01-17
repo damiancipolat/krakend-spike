@@ -5,7 +5,7 @@ This project is an spike to learn and practice the basic usage of KrakenD api ga
 To create this project:
 - https://www.youtube.com/watch?v=YhLoCNtGkHY&list=PLRvQJHX4HOd723jUhwecqWc60Z4Tw6_vc
 - https://www.krakend.io/docs/overview/
-- 
+
 ### Configuration:
 To test this project run the following commands, you require docker installed in your computer.
 Is required a **.json** configuration file, you can create it using a online designer https://designer.krakend.io/#!/
