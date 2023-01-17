@@ -228,3 +228,30 @@ We create a forward **http://localhost:8080/api/post/target** to **https://jsonp
       ]
     }
 ```
+
+### 8) Cache:
+We create a forward **http://localhost:8080/api/post/cache** to **https://jsonplaceholder.typicode.com/users/2**.
+
+```json
+    {
+      "@comments":"This endpoint use internal cache",
+      "endpoint": "/api/post/cache",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/users/2",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ],
+          "extra_config":{
+            "qos/http-cache":{
+              "shared":true
+            }
+          }
+        }
+      ]
+    }
+```
