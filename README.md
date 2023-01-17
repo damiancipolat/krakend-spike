@@ -93,3 +93,66 @@ We create a forward **http://localhost:8080/api/responses/{id}** to **https://js
       ]
     }
 ```
+
+### 3) Proxy headers:
+We create a forward **http://localhost:8080/api/responses/headers** to **https://jsonplaceholder.typicode.com/comments/**.
+
+```json
+   {
+      "@comments":"This endpoint proxy headers ????",
+      "endpoint": "/api/responses/headers",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/comments/",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
+          "disable_host_sanitize": false,
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ],
+          "is_collection": true,
+          "target": "",
+          "group": "",
+          "mapping": {
+            "collection": "comments"
+          }
+        }
+      ],
+      "input_headers":[
+        "x-test"
+      ]
+    }
+```
+
+### 4) Merge responses:
+We create a forward **http://localhost:8080/api/responses/merge** to **https://jsonplaceholder.typicode.com/comments/1**.
+
+```json
+    {
+      "@comments":"This endpoint merge two responses post + comment.",
+      "endpoint": "/api/responses/merge",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/comments/1",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ]
+        },
+        {
+          "url_pattern": "/posts/2",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ]
+        }
+      ]
+    }
+```
