@@ -31,6 +31,8 @@ When the configuration and install is complete, test using a request.
 curl http://localhost:8080/__health
 ```
 
+There are a postman collection to test the request in the project with the name **postman-collection.json**.
+
 ## Concepts:
 Here we cover 8 exercises of krakend usage and how to create configuration file.
 
