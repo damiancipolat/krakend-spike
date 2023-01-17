@@ -66,3 +66,30 @@ We create a forward **http://localhost:8080/api/products/** to **https://jsonpla
       }
     }
 ```
+
+### 2) Proxy query string:
+We create a forward **http://localhost:8080/api/responses/{id}** to **https://jsonplaceholder.typicode.com/comments/{id}**.
+
+```json
+    {
+      "@comments":"This endpoint proxy query string",
+      "endpoint": "/api/responses/{id}",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/comments/{id}",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
+          "disable_host_sanitize": false,
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ]
+        }
+      ],
+      "input_query_strings":[
+        "id"
+      ]
+    }
+```
