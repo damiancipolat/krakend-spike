@@ -156,3 +156,52 @@ We create a forward **http://localhost:8080/api/responses/merge** to **https://j
       ]
     }
 ```
+
+### 5) Group data:
+We create a forward **http://localhost:8080/api/responses/group** to **https://jsonplaceholder.typicode.com/comments/1**.
+
+```json
+    {
+      "@comments":"This endpoint group data.",
+      "endpoint": "/api/responses/group",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/comments/1",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ],
+          "group":"response"
+        }
+      ]
+    }
+```
+
+### 6) Field renaming:
+We create a forward **http://localhost:8080/api/responses/mapping** to **https://jsonplaceholder.typicode.com/comments/1**.
+
+```json
+   {
+      "@comments":"This endpoint rename field email->emailText name->nameText.",
+      "endpoint": "/api/responses/mapping",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/comments/1",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "https://jsonplaceholder.typicode.com/"
+          ],
+          "mapping":{
+            "email":"emailText",
+            "name":"nameText"
+          }
+        }
+      ]
+    }
+```
