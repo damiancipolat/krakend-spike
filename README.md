@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/1689101/213045711-7fb9fa4f-77f4-423d-8fae-ed4f6c824e0f.png)
+
 # krakend-spike
 This project is an spike to learn and practice the basic usage of KrakenD api gateway.
 
